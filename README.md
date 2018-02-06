@@ -1,4 +1,3 @@
-'--file' specify the input file, while the '--type' is the descriptor type, the abbreviation of the descriptor types can be obtained by run `python iFeature.py --help` 
 # iFeature: A python package and web server for features extraction and selection from protein and peptide sequences
 
 iFeature is a comprehensive Python-based toolkit for generating various numerical feature representation schemes from protein or peptide sequences. iFeature is capable of calculating and extracting a wide spectrum of 18 major sequence encoding schemes that encompass 53 different types of feature descriptors. Furthermore, iFeature also integrates five kinds of frequently used feature clustering algorithms, four feature selection algorithms and three dimensionality reduction algorithms. 
@@ -27,3 +26,8 @@ The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py s
 python python iFeature.py --file examples/test-protein.txt --type AAC
 ```
 '--file' specify the input file, while the '--type' is the descriptor type, the abbreviation of the descriptor types can be obtained by run `python iFeature.py --help` 
+
+Users can generate different descriptors by change the descriptor type specified by '--type', For example, run the following command to generate the `Dipeptide Deviation from Expected Mean (DDE)` descriptor:
+```sh
+python python iFeature.py --file examples/test-protein.txt --type DDE
+```
