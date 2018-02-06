@@ -28,22 +28,37 @@ python cluster.py --help
 python feaSelector.py --help
 ```
 Furthermore, the iFeature package contains other Python scripts to generate the position-specific scoring matrix (PSSM) profiles, predicted protein secondary structure and predicted protein disorder, which have also been often used to improve the prediction performance of machine learning-based classifiers in conjunction with sequence-derived information. The three dimensionality reduction algorithms are also included in the `scripts` directory.
-#### Examples for users to extract descriptors.
-The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py should be in fasta format, Please find the example in `example` folder. Running the following command to obtain the `Composition of k-spaced Amino Acid Pairs (CKSAAP)` descriptor:
+#### Examples for users to extract descriptors from `iFeature.py`.
+The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py should be in fasta format, Please find the example in `example` folder. The following parameters are required by `iFeaturePseKRAAC.py`:
+* --help show help of 'iFeature.py'
+* --file protein/peptide sequence file in fasta format
+* --type feature types for protein sequence analysis
+* --path data file path used for 'PSSM', 'SSEB(C)', 'Disorder(BC)', 'ASA' and 'TA' encodings
+* --train training file in fasta format only used for 'KNNprotein' or 'KNNpeptide' encodings
+* --label sample label file only used for 'KNNprotein' or 'KNNpeptide' encodings
+* --order output order for of Amino Acid Composition (i.e. AAC, EAAC, CKSAAP, DPC, DDE, TPC) descriptors
+* --userDefinedOrder user defined output order for of Amino Acid Composition (i.e. AAC, EAAC, CKSAAP, DPC, DDE, TPC) descriptors
+* --out the generated descriptor file
+
+Users can generate different descriptors by change the descriptor type specified by '--type', For example, run the following command to generate `CKSAAP` descriptor:
 ```sh
 python python iFeature.py --file examples/test-protein.txt --type CKSAAP
-```
-'--file' specify the input file, while the '--type' is the descriptor type, the abbreviation of the descriptor types can be obtained by run `python iFeature.py --help`.
-
-Users can generate different descriptors by change the descriptor type specified by '--type', For example, run the following command to generate the `Dipeptide Deviation from Expected Mean (DDE)` descriptor:
-```sh
-python python iFeature.py --file examples/test-protein.txt --type DDE
 ```
 For some of the descriptors, user can adjust the default parameters by advanced usage. For example, for `CKSAAP` descriptor, advanced users can adjust the size of the sliding window to <N> (the default is 5) by running the following Python command:
 ```sh
 python codes/EAAC.py examples/test-peptide.txt 3 EAAC.tsv
-``` 
+```
+
+
 The detatiled advanced usage for each type of descriptor can be found in `iFeature_manual.pdf` in `iFeature` directory.
+#### Examples for users to extract descriptors from `iFeaturePseKRAAC.py`.
+The 16 types of reduced amino acid alphabets with different clustering approaches can be used to generate different versions of pseudo reduced amino acid compositions (PseRAACs).
 
-
+The following parameters are required by `iFeaturePseKRAAC.py`:
+* --file protein/peptide sequence file in fasta format
+* --type descriptor type in the PseKRAAC feature group
+* feature types for protein sequence analysis, two alternative modes (g-gap and lambda-correlation) are available, with the ‘g-gap’ model as the default. 
+* K-tuple value, three K-tuple values (i.e. 1, 2 and 3) are available, default is 2
+* --gap_lambda gap value for the `g-gap` model or lambda value for the `lambda-correlation’ model, 10 values are available (i.e. 0, 1, 2, …, 9)
+* the reduced amino acids cluster type.
 
