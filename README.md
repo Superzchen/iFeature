@@ -21,7 +21,7 @@ python iFeature.py --help
 python iFeaturePseKRAAC.py --help
 ``` 
 Furthermore, the iFeature package contains other Python scripts to generate the position-specific scoring matrix (PSSM) profiles, predicted protein secondary structure and predicted protein disorder, which have also been often used to improve the prediction performance of machine learning-based classifiers in conjunction with sequence-derived information. The three dimensionality reduction algorithms are also included in the ‘scripts’ directory.
-##### Examples for users to extract descriptors.
+#### Examples for users to extract descriptors.
 The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py should be in fasta format, Please find the input example in 'example' folder. Running the following command to obtain the `Amino Acid Composition (AAC)` descriptors:
 ```sh
 python python iFeature.py --file examples/test-protein.txt --type AAC
