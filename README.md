@@ -26,3 +26,4 @@ The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py s
 ```sh
 python python iFeature.py --file examples/test-protein.txt --type AAC
 ```
+'--file' specify the input file, while the '--type' is the descriptor type, the abbreviation of the descriptor types can be obtained by run `python iFeature.py --help` 
