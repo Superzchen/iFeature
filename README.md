@@ -1,96 +1,165 @@
-# iFeature: A python package and web server for features extraction and selection from protein and peptide sequences
+# MusiteDeep: a Deep-learning Framework for General and Kinase-specific Phosphorylation Site Prediction 
 
-iFeature is a comprehensive Python-based toolkit for generating various numerical feature representation schemes from protein or peptide sequences. iFeature is capable of calculating and extracting a wide spectrum of 18 major sequence encoding schemes that encompass 53 different types of feature descriptors. Furthermore, iFeature also integrates five kinds of frequently used feature clustering algorithms, four feature selection algorithms and three dimensionality reduction algorithms. 
+MusiteDeep provides a deep-learning method for general and kinase-specific phosphorylation site prediction. It is implemented by deep learning library Keras and Theano backend. At present, MusiteDeep only provides prediction of human phosphorylation sites; however, it also provides customized model training that enables users to train other PTM prediction models by using their own training data sets based on either CPU or GPU. 
 # Installation
 
-  - Download iFeature by 
+  - Download MusiteDeep by 
   ```sh
-  git clone https://github.com/Superzchen/iFeature
+  git clone https://github.com/duolinwang/MusiteDeep
   ```
-  iFeature is an open-source Python-based toolkit, which operates depending on the Python environment (Python Version 3.0 or above) and can be run on multi-OS systems (such as Windows, Mac and Linux operating systems). Before running iFeature, user should make sure all the following packages are installed in their Python environment: sys, os, shutil, scipy, argparse, collections, platform, math, re, numpy (1.13.1), sklearn (0.19.1), matplotlib (2.1.0), and pandas (0.20.1). For convenience, we strongly recommended users to install the Anaconda Python 3.0 version (or above) in your local computer. The software can be freely downloaded from https://www.anaconda.com/download/.
-# For general users who want to generate descriptors by our provided iFeature package :
-cd to the iFeature folder which contains iFeature.py, iFeaturePseKRAAC.py, cluster.py and feaSelector.py. All the functions regarding feature extraction, feature or sample clustering and feature selection analysis can be executed through these four main programs by specifying the parameter '--type'. 
+  - Installation has been tested in Linux and Mac OS X with Python 2.7. 
+  - Since the package is written in python 2.7, [python 2.7](https://www.python.org/downloads/ ) with the pip tool must be installed first. 
+MusiteDeep uses the following dependencies:
+numpy,  scipy, pandas, h5py, keras version=1.1.0
+You can install these packages first, by the following commands:
 
-"iFeature.py" is the main program used to extract 37 different types of feature descriptors. For details of other parameters, run:
 ```sh
-python iFeature.py --help 
+pip install pandas
+pip install numpy
+pip install scipy
+pip install h5py
+pip install -v keras==1.1.0
+pip install theano
 ```
-"iFeaturePseKRAAC.py" is the program used to extract the 16 types of pseudo K-tuple reduced amino acid composition (PseKRAAC) feature descriptors. For details of other parameters, run: 
+To install MusiteDeep, cd to the MusiteDeep folder and run the installation command:
 ```sh
-python iFeaturePseKRAAC.py --help
+python setup.py install 
 ```
-"cluster.py" is the program used for running the feature or sample clustering algorithms. For details of other parameters, run:
+ - Since MusiteDeep is developed by theano, you must change the default backend from TensorFlow to theano.
+If you have run Keras at least once, you will find the Keras configuration file at:
+$HOME/.keras/keras.json
+If it isn’t there, you can create it. 
+Change the default configuration file into:
 ```sh
-python cluster.py --help
+{	
+    "image_dim_ordering": "tf",
+    "epsilon": 1e-07,
+    "floatx": "float32",
+    "backend": "theano"
+}
 ```
-"feaSelector.py" is the fourth main program used to implement the feature selection algorithms. For details of other parameters, run:
-```sh
-python feaSelector.py --help
-```
-Furthermore, the iFeature package contains other Python scripts to generate the position-specific scoring matrix (PSSM) profiles, predicted protein secondary structure and predicted protein disorder, which have also been often used to improve the prediction performance of machine learning-based classifiers in conjunction with sequence-derived information. The three dimensionality reduction algorithms are also included in the `scripts` directory.
-#### Examples for users to extract descriptors from `iFeature.py`. All files in the example commands can be found in the `examples` directory. 
-The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py should be in fasta format, Please find the example in `example` folder. The following parameters are required by `iFeature.py`:
-* --help    show help of 'iFeature.py'
-* --file    protein/peptide sequence file in fasta format
-* --type    feature types for protein sequence analysis
-* --path    data file path used for 'PSSM', 'SSEB(C)', 'Disorder(BC)', 'ASA' and 'TA' encodings
-* --train   training file in fasta format only used for 'KNNprotein' or 'KNNpeptide' encodings
-* --label   sample label file only used for 'KNNprotein' or 'KNNpeptide' encodings
-* --order   output order for of Amino Acid Composition (i.e. AAC, EAAC, CKSAAP, DPC, DDE, TPC) descriptors
-* --userDefinedOrder user defined output order for of Amino Acid Composition (i.e. AAC, EAAC, CKSAAP, DPC, DDE, TPC) descriptors
-* --out     the generated descriptor file
-Running the following command to obtain the `Composition of k-spaced Amino Acid Pairs (CKSAAP)` descriptor:
-```sh
-python python iFeature.py --file examples/test-protein.txt --type CKSAAP
-```
-Generally, users can generate different descriptors by change the descriptor type specified by '--type', For example, run the following command to generate the `Dipeptide Deviation from Expected Mean (DDE)` descriptor:
-```sh
-python python iFeature.py --file examples/test-protein.txt --type DDE
-```
-For some descriptors (e.g. `PSSM`, `Disorder`, `ASA`, `TA` and `SSEB`), the predicted protein property file should be supplied by the `--path` parameter. For example, run the following command to generate `PSSM` descriptor:
-```sh
-python iFeature.py --file examples/test-peptide.txt --type PSSM --path examples/predictedProteinProperty
-``` 
-`KNNprotein` and `KNNpeptide` descriptors requires an extra training file and a label file, which is spedified by `--train` and `--label`. Run the following command to generate the `KNNprotein` descriptor:
-```sh
-python iFeature.py --file examples/test-peptide.txt --type KNNpeptide --train examples/train-peptide.txt --label examples/label.txt
-``` 
-For the six descriptors in `Amino Acid Composition` group, user can specify the output order by `--order` and `--userDefinedOrder`, three amino acids order (i.e. alphabetically, polarity and side chaim volume) were supplied by iFeature. Run the following command to generate the AAC descriptor with the 'polarity' order:
-```sh
-python iFeature.py --file examples/test-protein.txt --type AAC --order polarity
-```
-Run the following command to generate the `AAC` descriptor with a user-defined order:
-```sh
-python iFeature.py --file examples/test-protein.txt --type AAC --order userDefined --userDefinedOrder YWVTSRQPNMLKIHGFEDCA
-```
-For some of the descriptors, user can adjust the default parameters by advanced usage. The detatiled advanced usage for each type of descriptor can be found in `iFeature_manual.pdf` in `iFeature` directory. For example, for `CKSAAP` descriptor, advanced users can adjust the size of the sliding window to <N> (the default is 5) by running the following Python command:
-```sh
-python codes/EAAC.py examples/test-peptide.txt 3 EAAC.tsv
-```
-The default output file is `encoding.tsv`, which can be specified by `--out`. For example:
-```sh
-python iFeature.py --file examples/test-protein.txt --type AAC --out AAC.txt
-```
-#### Examples for users to extract descriptors from `iFeaturePseKRAAC.py`.
-The 16 types of reduced amino acid alphabets with different clustering approaches can be used to generate different versions of pseudo reduced amino acid compositions (PseRAACs).
+# Running on GPU or CPU
 
-The following parameters are required by `iFeaturePseKRAAC.py`:
-* --file protein/peptide sequence file in fasta format
-* --type descriptor type in the PseKRAAC feature group
-* feature types for protein sequence analysis, two alternative modes (g-gap and lambda-correlation) are available, with the ‘g-gap’ model as the default. 
-* K-tuple value, three K-tuple values (i.e. 1, 2 and 3) are available, default is 2
-* --gap_lambda gap value for the `g-gap` model or lambda value for the `lambda-correlation’ model, 10 values are available (i.e. 0, 1, 2, …, 9)
-* the reduced amino acids cluster type.
-Users can run the following command to view the available values for each descriptor type:
+>After you install MusiteDeep, Theano will be installed along with MusiteDeep. Refer to [Keras documentation](https://keras.io/getting-started/faq/#how-can-i-run-keras-on-gpu)  to configure theano to run on GPU/CPU. Note that, if you want to use GPU, you also need to install [CUDA]( https://developer.nvidia.com/cuda-toolkit) and [cuDNN](https://developer.nvidia.com/cudnn); refer to their websites for instructions. If you use "pip install theano" to install theano (the lower but official supported version), you need to install cuDNN version 5.1. If you want to install cuDNN with higher version, you need to upgrate theano. CPU is only suitable for predicting not training. 
+
+# For general users who want to perform human phosphorylation site prediction by our provided model :
+cd to the MusiteDeep/MusiteDeep folder which contains predict.py, train_general.py and train_kinase.py.  
+#### For general phosphorylation site prediction using our pre-trained model, run:
 ```sh
-python iFeaturePseKRAAC.py --show
+python predict.py -input [custom predicting data in fasta format] -predict-type general -output [custom specified file for predicting results] 
 ```
-Use the following command to extract the PseKRAAC feature descriptors:
+##### Example:
 ```sh
-python iFeaturePseKRAAC.py --file examples/test-protein.txt --type type1 --subtype lambda-correlation --ktuple 2 --gap_lambda 2 --raactype 5
+python predict.py -input ../testdata/testing_proteins_STY.fasta -predict-type general -output result_test_general.txt -residue-types S,T,Y
 ```
+You can change the type of sites for prediction by setting parameter ‘-residue-types’. For our general phosphorylation site prediction, only S, T and Y are acceptable. It takes about 15 minutes for running on CPU. The warnings can be ignored.
+For details of other parameters, run:
+```sh
+python predict.py --help
+```
+or
+```sh
+python predict.py -h
+```
+#### For kinase-specific phosphorylation site prediction using our pre-trained model, run:
+```sh
+python predict.py -input [custom predicting data in fasta format] -predict-type kinase -kinase [custom specified kinase to predict] -output [custom specified file for predicting results]
+```
+##### Example:
+Prediction for PKA:
+```sh
+python predict.py -input ../testdata/testing_proteins_PKA.fasta -predict-type kinase -kinase PKA -output result_test_PKA.txt
+```
+Prediction for CDK:
+```s
+python predict.py -input ../testdata/testing_proteins_CDK.fasta -predict-type kinase -kinase CDK -output result_test_CDK.txt
+```
+…
+It takes about 5 minutes for running on CPU. The warnings can be ignored.
+For details of other parameters, run:
+```sh
+python predict.py --help
+```
+or
+```sh
+python predict.py -h
+```
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# For advanced users who want to perform training and predicting by using their own data:
 
+#### For custom training:
+CPU is only suitable for prediction not training. 
+For custom general training using user’s training data:
+```sh
+python train_general.py -input [custom training data in fasta format] -output-prefix [prefix of pre-trained model] -residue-types [custom specified residue types]
+```
+For details of other parameters, run:
+```sh
+python train_general.py --help
+```
+or
+```sh
+python train_general.py -h
+```
+Examples will be shown together with other commands below.
 
+For custom kinase-specific training (or performing transfer learning) from users’ training data. To solve the small-sample problem of kinase-specific phosphorylation site prediction, we encourage users to train a base network on the general phosphorylation data and then transfer the whole layers except for the last output layer of the base network to kinase-specific models by fine-tuning the whole network using the kinase-specific data. In this way, the kinase-specific models learn from the general feature representations and the overfitting problem is relieved. This approach has successfully been applied to many image classification problems and shown good classification performance by using small-sample data.
 
+To do so by MusiteDeep, the background models from one custom general data must be trained first by train_general.py, then train the kinase-specific models by using the background models to initialize the weights in the kinase-specific models. 
+```sh
+python train_kinase.py -input [custom training data in fasta format] -background-prefix [prefix of pre-trained model] -output-prefix [prefix of output files]
+```
+For details of other parameters, run:
+```sh
+python train_kinase.py --help
+```
+or 
+```sh
+python train_kinase.py -h
+```
+Users can modify the number of transfer layers from the top layers by setting '-transferlayer TRANSFERLAYER'. 
+Examples will be shown together with other commands below.
 
+#### Custom prediction from custom general models and custom kinase-specific models:
+```sh
+python predict.py -input [custom predicting data in fasta format] -predict-type custom -model-prefix [prefix of pre-trained model] -output [custom specified file for predicting results] 
+```
+##### Examples for custom training and prediction from custom models.
 
+When you have a lot of protein sequences in fasta format and you have changed the fasta format by adding “#” to the sites which are annotated sites of a specific PTM (use # to indicate positive sites), you can do custom general training. Taking the training of a general phosphorylation model as an example ,  training_proteins_nonredundant_STY.fasta in the ‘testdata’ folder is your training data, you can train a general model with prefix ‘custom_general’ and focusing on residues S,T, you can run the following command: 
+```sh
+python train_general.py -input ../testdata/training_proteins_nonredundant_STY.fasta -output-prefix custom_general_ST -residue-types S,T -nclass=5
+```
+Since the ‘-residue-types’ is set as S,T, only fragments center on S and T will be considered and used to train the model. Note that all the residues specified by this parameter will be trained in one model. So that S/T and Y cannot be used to train one model. For the model focusing on Y, a separate model need to be trained.
+When you only have a small sample of protein sequence data, it is better to train general phosphorylation models first before training a kinase-specific phosphorylation model, then use the general phosphorylation models to initialize weights for the kinase-specific model, which is the concept of transfer learning.  Taking the training of PKA-specific phosphorylation model as an example, run the following command:
+```sh
+python train_kinase.py -input ../testdata/training_proteins_PKA.fasta  -background-prefix custom_general_ST -output-prefix custom_PKA -nclass=5
+```
+Here, custom_general_ST is the prefix of the pre-trained model by using the general phosphorylation training data ‘training_proteins_nonredundant_STY.fasta’ in the former command. You can also specify the number of the last layers to be randomly initialized by setting the parameter ‘-transferlayer’. The default value of ‘transferlayer’ is 1. If you don’t specify the residue type by parameter ‘-residue-types’, the same residues will be focused as in the general model.  You can set a different ‘-redisue-types’ from the general model. This is for training the general phosphorylation model of residue Y by using the general phosphorylation model for residues S and T as the background model to initialize weights in the new model. In this way, the performance of general phosphorylation models of residue Y is improved. Here is an example of training phosphorylation model for residue Y:
+```sh
+python train_kinase.py -input ../testdata/training_proteins_nonredundant_STY.fasta -background-prefix custom_general_ST -output-prefix custom_general_Y -nclass=5 -residue-types Y -transferlayer 0
+```
+This time only fragment’s center on Y will be considered and used to train the model.
+
+##### Example of prediction from a custom general PTM model for residues S/T and Y:
+
+```sh
+python predict.py -input ../testdata/testing_proteins_STY.fasta -predict-type custom -model-prefix custom_general_ST -output custom_general_results.txt -residue-types S,T
+python predict.py -input ../testdata/testing_proteins_STY.fasta -predict-type custom -model-prefix custom_general_Y -output custom_general_results.txt -residue-types Y
+```
+##### Example of prediction from a custom kinase-specific PTM model:
+
+```sh
+python predict.py -input ../testdata/testing_proteins_PKA.fasta -predict-type custom -model-prefix custom_PKA -output custom_PKA_results.txt 
+```
+#### Training and testing data used for paper (Fig.4) is provided in the folder of testdata. 
+testing_proteins_ST.fasta is the testing data for S and T (annotated after 2008).
+
+trainning_proteins_nonredundant_50_ST.fasta is the training data for S and T with no more than 50% identity with the testing data.
+trainning_proteins_nonredundant_10_ST.fasta is the training data for S and T with no more than 10% identity with the testing data.
+S or T followed by "#" indicates the positive sites.
+
+### Citation：
+Please cite the following paper for using MusiteDeep:
+Zhen Chen, Pei Zhao, Fuyi Li, André Leier, Tatiana T. Marquez-Lago, Yanan Wang, Geoffrey I. Webb, Roger J. Daly*, Kuo-Chen Chou*, Jiangning Song*, iFeature: A python package and web server for features extraction and selection from protein and
+peptide sequences. (Under review)
