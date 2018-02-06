@@ -130,6 +130,7 @@ python scripts/tsneAnalysis.py --file examples/example.tsv
 ```
 
 ### Citation：
-Please cite the following paper for using MusiteDeep:
+Please cite the following paper for using iFeature:
+
 Zhen Chen, Pei Zhao, Fuyi Li, André Leier, Tatiana T. Marquez-Lago, Yanan Wang, Geoffrey I. Webb, Roger J. Daly*, Kuo-Chen Chou*, Jiangning Song*, iFeature: A python package and web server for features extraction and selection from protein and
 peptide sequences. (Under review)
