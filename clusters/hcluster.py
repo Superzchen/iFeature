@@ -3,6 +3,8 @@
 
 import scipy.cluster.hierarchy as sch
 import numpy as np
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pylab as plt
 
 def hcluster(encodings, image='hcluster.png', **kw):
