@@ -9,6 +9,8 @@ from clusters import readCode
 import argparse
 import numpy as np
 from sklearn.decomposition import LatentDirichletAllocation
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 def ldaAnalysis(encodings, labelFile, n_components = 2):

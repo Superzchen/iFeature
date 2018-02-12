@@ -13,6 +13,8 @@
 #  Copyright (c) 2008 Tilburg University. All rights reserved.
 
 import numpy as np
+import matplotlib as mpl
+mpl.use('Agg')
 import pylab
 import pandas as pd
 import sys, re, os

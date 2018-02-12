@@ -9,6 +9,8 @@ from clusters import readCode
 import argparse
 import numpy as np
 from sklearn.decomposition import PCA
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 def pacAnalysis(encodings, n_components = 2):
