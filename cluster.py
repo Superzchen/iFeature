@@ -36,7 +36,12 @@ if __name__ == '__main__':
 		else:
 			data = np.array(encodings).T[1:, 1:].astype(float)
 		labels = np.array(myCluster)[0:, 1:].reshape(-1, )
-		Y = tsne.tsne(data, 2, 50, 20.0)
+		e = ''
+		try:
+			Y = tsne.tsne(data, 2, 50, 20.0)
+		except RuntimeWarning as e:
+			Y = pca.pca(data, n_components = 2)
+
 		df = pd.DataFrame({'X': Y[:, 0], 'Y': Y[:, 1], 'L': labels})
 
 		mySet = set(labels)
