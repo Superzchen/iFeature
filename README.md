@@ -1,14 +1,14 @@
 # *iFeature*: A python package and web server for features extraction and selection from protein and peptide sequences
 
-iFeature is a comprehensive Python-based toolkit for generating various numerical feature representation schemes from protein or peptide sequences. iFeature is capable of calculating and extracting a wide spectrum of 18 major sequence encoding schemes that encompass 53 different types of feature descriptors. Furthermore, iFeature also integrates five kinds of frequently used feature clustering algorithms, four feature selection algorithms and three dimensionality reduction algorithms. 
+*iFeature* is a comprehensive Python-based toolkit for generating various numerical feature representation schemes from protein or peptide sequences. *iFeature* is capable of calculating and extracting a wide spectrum of 18 major sequence encoding schemes that encompass 53 different types of feature descriptors. Furthermore, *iFeature* also integrates five kinds of frequently used feature clustering algorithms, four feature selection algorithms and three dimensionality reduction algorithms. 
 # Installation
 
-  - Download iFeature by 
+  - Download *iFeature* by 
   ```sh
   git clone https://github.com/Superzchen/iFeature
   ```
-  iFeature is an open-source Python-based toolkit, which operates depending on the Python environment (Python Version 3.0 or above) and can be run on multi-OS systems (such as Windows, Mac and Linux operating systems). Before running iFeature, user should make sure all the following packages are installed in their Python environment: sys, os, shutil, scipy, argparse, collections, platform, math, re, numpy (1.13.1), sklearn (0.19.1), matplotlib (2.1.0), and pandas (0.20.1). For convenience, we strongly recommended users to install the Anaconda Python 3.0 version (or above) in your local computer. The software can be freely downloaded from https://www.anaconda.com/download/.
-# For general users who want to generate descriptors by our provided iFeature package :
+  *iFeature* is an open-source Python-based toolkit, which operates depending on the Python environment (Python Version 3.0 or above) and can be run on multi-OS systems (such as Windows, Mac and Linux operating systems). Before running *iFeature*, user should make sure all the following packages are installed in their Python environment: sys, os, shutil, scipy, argparse, collections, platform, math, re, numpy (1.13.1), sklearn (0.19.1), matplotlib (2.1.0), and pandas (0.20.1). For convenience, we strongly recommended users to install the Anaconda Python 3.0 version (or above) in your local computer. The software can be freely downloaded from https://www.anaconda.com/download/.
+# For general users who want to generate descriptors by our provided *iFeature* package :
 cd to the iFeature folder which contains iFeature.py, iFeaturePseKRAAC.py, cluster.py and feaSelector.py. All the functions regarding feature extraction, feature or sample clustering and feature selection analysis can be executed through these four main programs by specifying the parameter '--type'. 
 
 "iFeature.py" is the main program used to extract 37 different types of feature descriptors. For details of other parameters, run:
@@ -27,7 +27,7 @@ python cluster.py --help
 ```sh
 python feaSelector.py --help
 ```
-Furthermore, the iFeature package contains other Python scripts to generate the position-specific scoring matrix (PSSM) profiles, predicted protein secondary structure and predicted protein disorder, which have also been often used to improve the prediction performance of machine learning-based classifiers in conjunction with sequence-derived information. The three dimensionality reduction algorithms are also included in the `scripts` directory.
+Furthermore, the *iFeature* package contains other Python scripts to generate the position-specific scoring matrix (PSSM) profiles, predicted protein secondary structure and predicted protein disorder, which have also been often used to improve the prediction performance of machine learning-based classifiers in conjunction with sequence-derived information. The three dimensionality reduction algorithms are also included in the `scripts` directory.
 ### Examples for users to extract descriptors from `iFeature.py`. All files in the example commands can be found in the `examples` directory. 
 The input protein or peptide sequences for iFeature.py and iFeaturePseKRAAC.py should be in fasta format, Please find the example in `example` folder. The following parameters are required by `iFeature.py`:
 * `--help`    show help of 'iFeature.py'
@@ -90,7 +90,7 @@ Use the following command to extract the PseKRAAC feature descriptors:
 python iFeaturePseKRAAC.py --file examples/test-protein.txt --type type1 --subtype lambda-correlation --ktuple 2 --gap_lambda 2 --raactype 5
 ```
 ### Examples for Feature analysis.
-iFeature integrates several commonly used and useful clustering, feature selection and dimensionality reduction algorithms. In order to facilitate the understanding of the results for non-experts, a scatter diagram will be ploted to show the distribution of the cluster result. When ploting the scatter diagram, the t-SNE algorithm was used to reduce the high-dimensional descriptors to 2 dimensions, and then the scatter diagram was plotted by using the reduced descriptors and clustering result. The clustering result will be also stored in a file with text format. The file contained the information of clusters number and ownership for each sample. The clustering algorithms can be run by the following command:
+*iFeature* integrates several commonly used and useful clustering, feature selection and dimensionality reduction algorithms. In order to facilitate the understanding of the results for non-experts, a scatter diagram will be ploted to show the distribution of the cluster result. When ploting the scatter diagram, the t-SNE algorithm was used to reduce the high-dimensional descriptors to 2 dimensions, and then the scatter diagram was plotted by using the reduced descriptors and clustering result. The clustering result will be also stored in a file with text format. The file contained the information of clusters number and ownership for each sample. The clustering algorithms can be run by the following command:
 ```sh
 python cluster.py --file descriptor.tsv --type <clustering_algorithm> --sof <sample/feature>
 ```
@@ -112,7 +112,7 @@ python feaSelector.py --file examples/example.tsv --type CHI2 --label examples/l
 ```
 After running the feature selection algorithm  the descriptors will be ranked according to their importance, the higher the ranking is, the more important the descriptor is.
 
-In addition, three dimensionality reduction algorithms (PCA,LDA and t-SNE) have been implemented in the iFeature package and can be run using the following commands. To facilitate understanding, the dimensionality reduction result can be
+In addition, three dimensionality reduction algorithms (PCA,LDA and t-SNE) have been implemented in the *iFeature* package and can be run using the following commands. To facilitate understanding, the dimensionality reduction result can be
 visualized by the scatter diagram.
 
 Use the following command to perform the PCA analysis:
@@ -130,6 +130,6 @@ python scripts/tsneAnalysis.py --file examples/example.tsv
 ```
 
 ### Citation：
-If you find iFeature useful, please kindly cite the following paper:
+If you find *iFeature* useful, please kindly cite the following paper:
 
-Chen Z, Zhao P, Li F, Leier A, Marquez-Lago TT, Wang Y, Webb GI, Daly RJ, Chou KC, Song J*. iFeature: a python package and web server for features extraction and selection from protein and peptide sequences. 2018, submitted for publication.
+Chen Z, Zhao P, Li F, Leier A, Marquez-Lago TT, Wang Y, Webb GI, Daly RJ, Chou KC, Song J*. *iFeature*: a python package and web server for features extraction and selection from protein and peptide sequences. 2018, submitted for publication.
