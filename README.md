@@ -1,4 +1,4 @@
-# iFeature: A python package and web server for features extraction and selection from protein and peptide sequences
+# *iFeature*: A python package and web server for features extraction and selection from protein and peptide sequences
 
 iFeature is a comprehensive Python-based toolkit for generating various numerical feature representation schemes from protein or peptide sequences. iFeature is capable of calculating and extracting a wide spectrum of 18 major sequence encoding schemes that encompass 53 different types of feature descriptors. Furthermore, iFeature also integrates five kinds of frequently used feature clustering algorithms, four feature selection algorithms and three dimensionality reduction algorithms. 
 # Installation
