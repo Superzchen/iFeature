@@ -8,7 +8,7 @@
   git clone https://github.com/Superzchen/iFeature
   ```
   *iFeature* is an open-source Python-based toolkit, which operates depending on the Python environment (Python Version 3.0 or above) and can be run on multi-OS systems (such as Windows, Mac and Linux operating systems). Before running *iFeature*, user should make sure all the following packages are installed in their Python environment: sys, os, shutil, scipy, argparse, collections, platform, math, re, numpy (1.13.1), sklearn (0.19.1), matplotlib (2.1.0), and pandas (0.20.1). For convenience, we strongly recommended users to install the Anaconda Python 3.0 version (or above) in your local computer. The software can be freely downloaded from https://www.anaconda.com/download/.
-# For general users who want to generate descriptors by our provided *iFeature* package :
+# For users who want to generate descriptors by our provided *iFeature* package :
 cd to the iFeature folder which contains iFeature.py, iFeaturePseKRAAC.py, cluster.py and feaSelector.py. All the functions regarding feature extraction, feature or sample clustering and feature selection analysis can be executed through these four main programs by specifying the parameter '--type'. 
 
 "iFeature.py" is the main program used to extract 37 different types of feature descriptors. For details of other parameters, run:
@@ -55,7 +55,7 @@ python iFeature.py --file examples/test-peptide.txt --type PSSM --path examples/
 ```sh
 python iFeature.py --file examples/test-peptide.txt --type KNNpeptide --train examples/train-peptide.txt --label examples/label.txt
 ``` 
-For the six descriptors in `Amino Acid Composition` group, user can specify the output order by `--order` and `--userDefinedOrder`, three amino acids order (i.e. alphabetically, polarity and side chaim volume) were supplied by iFeature. Run the following command to generate the AAC descriptor with the 'polarity' order:
+For the six descriptors in `Amino Acid Composition` group, user can specify the output order by `--order` and `--userDefinedOrder`, three amino acids order (i.e. alphabetically, polarity and side chaim volume) were supplied by *iFeature*. Run the following command to generate the AAC descriptor with the 'polarity' order:
 ```sh
 python iFeature.py --file examples/test-protein.txt --type AAC --order polarity
 ```
