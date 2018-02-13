@@ -130,6 +130,6 @@ python scripts/tsneAnalysis.py --file examples/example.tsv
 ```
 
 ### Citation：
-Please cite the following paper for using iFeature:
+If you find iFeature useful, please kindly cite the following paper:
 
-Chen Z, Zhao P, Li F, Leier A, Marquez-Lago TT, Wang Y, Webb GI, Daly RJ, Chou KC, Song J*. iFeature: a python package and web server for features extraction and selection from protein and peptide sequences, 2018, submitted for publication.
+Chen Z, Zhao P, Li F, Leier A, Marquez-Lago TT, Wang Y, Webb GI, Daly RJ, Chou KC, Song J*. iFeature: a python package and web server for features extraction and selection from protein and peptide sequences. 2018, submitted for publication.
