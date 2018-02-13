@@ -9,5 +9,6 @@ __all__ = [
 	'apc',
 	'meanshift',
 	'dbscan',
-	'tsne'
+	'tsne',
+	'pca'
 	]
