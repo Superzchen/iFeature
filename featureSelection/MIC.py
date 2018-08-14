@@ -36,7 +36,7 @@ def MIC(encodings, labelFile):
 		return 0, e
 
 	with open(labelFile) as f:
-		records = f.readlines()[1:]
+		records = f.readlines()
 	myDict = {}
 	try:
 		for i in records:

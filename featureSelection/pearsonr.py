@@ -38,7 +38,7 @@ def pearsonr(encodings, labelFile):
 		return 0, e
 
 	with open(labelFile) as f:
-		records = f.readlines()[1:]
+		records = f.readlines()
 	myDict = {}
 	try:
 		for i in records:
@@ -51,6 +51,7 @@ def pearsonr(encodings, labelFile):
 	labels = []
 	for i in encodings:
 		labels.append(myDict.get(i[0], 0))
+	print(labels)
 
 	dataShape = data.shape
 
