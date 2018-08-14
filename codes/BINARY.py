@@ -24,7 +24,7 @@ def BINARY(fastas, **kw):
 		for aa in sequence:
 			if aa == '-':
 				code = code + [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-				break
+				continue
 			for aa1 in AA:
 				tag = 1 if aa == aa1 else 0
 				code.append(tag)
