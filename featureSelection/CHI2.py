@@ -40,9 +40,7 @@ def CHI2(encodings, labelFile):
 	if dataShape[0] != len(labels):
 		print('Error: inconsistent data shape with sample number.')
 		return 0, 'Error: inconsistent data shape with sample number.'
-	
-	print(data)
-	print(labels)
+
 	sampleNumber = len(data)
 	labelClass = set(labels)
 	myFea = {}
