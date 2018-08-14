@@ -70,7 +70,7 @@ def CKSAAGP(fastas, gap = 5, **kw):
 			gPair = generateGroupPairs(groupKey)
 			sum = 0
 			for p1 in range(len(sequence)):
-				p2 = p1 + gap + 1
+				p2 = p1 + g + 1
 				if p2 < len(sequence) and sequence[p1] in AA and sequence[p2] in AA:
 					gPair[index[sequence[p1]]+'.'+index[sequence[p2]]] = gPair[index[sequence[p1]]+'.'+index[sequence[p2]]] + 1
 					sum = sum + 1

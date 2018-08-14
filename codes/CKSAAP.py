@@ -46,7 +46,7 @@ def CKSAAP(fastas, gap=5, **kw):
 				myDict[pair] = 0
 			sum = 0
 			for index1 in range(len(sequence)):
-				index2 = index1 + gap + 1
+				index2 = index1 + g + 1
 				if index1 < len(sequence) and index2 < len(sequence) and sequence[index1] in AA and sequence[index2] in AA:
 					myDict[sequence[index1] + sequence[index2]] = myDict[sequence[index1] + sequence[index2]] + 1
 					sum = sum + 1

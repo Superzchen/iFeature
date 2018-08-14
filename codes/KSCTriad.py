@@ -23,8 +23,8 @@ def CalculateKSCTriad(sequence, gap, features, AADict):
 			myDict[f] = 0
 
 		for i in range(len(sequence)):
-			if i+gap+1 < len(sequence) and i+2*gap+2<len(sequence):
-				fea = AADict[sequence[i]] + '.' + AADict[sequence[i+gap+1]]+'.'+AADict[sequence[i+2*gap+2]]
+			if i+g+1 < len(sequence) and i+2*g+2<len(sequence):
+				fea = AADict[sequence[i]] + '.' + AADict[sequence[i+g+1]]+'.'+AADict[sequence[i+2*g+2]]
 				myDict[fea] = myDict[fea] + 1
 
 		maxValue, minValue = max(myDict.values()), min(myDict.values())

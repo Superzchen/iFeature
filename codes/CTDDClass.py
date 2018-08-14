@@ -25,13 +25,19 @@ def Count(aaSet, sequence):
 		if aa in aaSet:
 			number = number + 1
 	cutoffNums = [1, math.floor(0.25 * number), math.floor(0.50 * number), math.floor(0.75 * number), number]
-	myCount = 0
+	cutoffNums = [i if i >=1 else 1 for i in cutoffNums]
+
 	code = []
-	for i in range(len(sequence)):
-		if sequence[i] in aaSet:
-			myCount = myCount + 1
-			if myCount in cutoffNums:
-				code.append((i+1)/len(sequence) * 100)
+	for cutoff in cutoffNums:
+		myCount = 0
+		for i in range(len(sequence)):
+			if sequence[i] in aaSet:
+				myCount += 1
+				if myCount == cutoff:
+					code.append((i + 1) / len(sequence) * 100)
+					break
+		if myCount == 0:
+			code.append(0)
 	return code
 
 def CTDDClass(fastas, groups):
