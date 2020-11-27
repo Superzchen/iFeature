@@ -1,5 +1,3 @@
-[![GitHub version](https://badge.fury.io/gh/Superzchen%2FiFeature.svg)](https://badge.fury.io/gh/Superzchen%2FiFeature)
-  
 ## *iLearn* - the updated version of *iFeature* is now available! 
 *iLearn* is a Python Toolkit and Web Server Integrating the Functionality of Feature Calculation, Extraction, Clustering, Feature Selection, Feature Normalization, Dimension Reduction and Model Construction for Classification, Best Model Selection, Ensemble Learning and Result Visualization for DNA, RNA and Protein Sequences. Please refer to https://github.com/Superzchen/iLearn for details.
 
