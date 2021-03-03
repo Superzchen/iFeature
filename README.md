@@ -1,4 +1,5 @@
-# *iLearnPlus* - an updated version of *iFeature* and *iLearn* is now available!
+# update news!!!
+### *iLearnPlus* - an updated version of *iFeature* and *iLearn* is now available!
 *iLearnPlus* is the first machine-learning platform with both **graphical-** and **web-based** user interface that enables the construction of automated machine-learning pipelines for computational analysis and predictions using nucleic acid and protein sequences. *iLearnPlus* integrates 21 machine-learning algorithms (including 12 conventional classification algorithms, two ensemble-learning frameworks and seven deep-learning approaches) and 19 major sequence encoding schemes (in total 147 feature descriptors), outnumbering all the current web servers and stand-alone tools for biological sequence analysis, to the best of our knowledge. In addition, the friendly GUI (Graphical User Interface) of *iLearnPlus* is available to biologists to conduct their analyses smoothly, significantly increasing the effectiveness and user experience compared to the existing pipelines. iLearnPlus is an open-source platform for academic purposes and is available at https://github.com/Superzchen/iLearnPlus/. The iLearnPlus-Basic module is online accessible at http://ilearnplus.erc.monash.edu/.
 
 ### *iLearnPlus-Basic* module interface:
